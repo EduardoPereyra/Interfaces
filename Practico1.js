@@ -128,7 +128,6 @@ function degradeMulticolor() {
         }
     }
     ctx.putImageData(imageData, 0, 0);
-
 }
 
 function cargarImagen() {
