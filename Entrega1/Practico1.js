@@ -32,7 +32,7 @@ let h = 100;
 let matriz = [];
 
 
-for (let x = 0; x < w; x++) {
+for (let x = 0; x < w; x++) { //creacion de la matriz
     matriz[x] = [];
     for (let y = 0; y < h; y++) {
         matriz[x][y] = Math.floor(Math.random()*100);
@@ -40,7 +40,7 @@ for (let x = 0; x < w; x++) {
     console.log(matriz[x])
 }
 
-function maximo() {
+function maximo() { //devuelve el maximo de la matriz completa
     let maximo = -1;
     for (let y = 0; y < h; y++) {
         matriz[y] = [];
@@ -53,7 +53,7 @@ function maximo() {
     return maximo;
 }
 
-function maxParMinImpar() {
+function maxParMinImpar() { //devuelve el maximo en las filas pares y el minimo en las impares
     let max = -1;
     let min = -1;
 
@@ -72,7 +72,7 @@ function maxParMinImpar() {
     return respuestas;
 }
 
-function promedio() {
+function promedio() { //devuelve el promedio de todas las filas guardados en un arreglo
     let respuesta = [];
     let aux;
 
@@ -87,12 +87,12 @@ function promedio() {
 }
 
 
-function rectangulo() {
+function rectangulo() { //crea un rectangulo
     ctx.fillStyle = "#ff0000";
     ctx.fillRect(10, 10, 100, 50);
 }
 
-function crearImagen() {
+function crearImagen() { //crea una imagen pixel por pixel
     imageData = ctx.createImageData(canvas.width, canvas.height);
     for (let y = 0; y < canvas.height; y++) {
         for (let x = 0; x < canvas.width; x++) {
@@ -102,7 +102,7 @@ function crearImagen() {
     ctx.putImageData(imageData, 0, 0);
 }
 
-function crearImagenGradiente() {
+function crearImagenGradiente() { //crea una imagen gradiente que va de negro a blanco de arriba hacia abajo
     imageData = ctx.createImageData(canvas.width, canvas.height);
     let r, g, b = 0;
 
@@ -117,7 +117,7 @@ function crearImagenGradiente() {
     ctx.putImageData(imageData, 0, 0);
 }
 
-function setPixel(imageData, x, y, r, g, b, a) {
+function setPixel(imageData, x, y, r, g, b, a) { //setea un color a un pixel con las cordenadas x e y
     index = (x + y * imageData.width) * 4;
     imageData.data[index + 0] = r;
     imageData.data[index + 1] = g;
@@ -126,13 +126,13 @@ function setPixel(imageData, x, y, r, g, b, a) {
 }
 
 
-function degradeMulticolor() {
+function degradeMulticolor() { //crea una imagen en degrade desde negro hasta amarillo hasta rojo
     imageData = ctx.createImageData(canvas.width, canvas.height);
     let r = 0;
     let g = 0;
     let b = 0;
 
-    for (let y = 0; y < imageData.height; y++) {
+    for (let y = 0; y < imageData.height; y++) { //primera mitad
         for (let x = 0; x < imageData.width / 2 ; x++) {
             r = (x / imageData.height) * 255;
             g = (x / imageData.height) * 255;
@@ -141,9 +141,9 @@ function degradeMulticolor() {
         }
     }
 
-    let aux = 255 / (imageData.width / 2);
+    let aux = 255 / (imageData.width / 2); //sacar la cuenta de cuanto hay que ir sacando al verde
 
-    for (let x = imageData.width / 2; x < imageData.width; x++) {
+    for (let x = imageData.width / 2; x < imageData.width; x++) { //segunda mitad
         g = g - aux;
         for (let y = 0; y < imageData.height; y++) {
             setPixel(imageData, x, y, r, g, b, 255);
@@ -152,7 +152,7 @@ function degradeMulticolor() {
     ctx.putImageData(imageData, 0, 0);
 }
 
-function cargarImagen(nombre) {
+function cargarImagen(nombre) { //carga una imagen mediante una direccion
     var image = new Image();
     image.src = nombre;
 
@@ -161,7 +161,7 @@ function cargarImagen(nombre) {
     }
 }
 
-function filtroImagen(nombre) {
+function filtroImagen(nombre) { //carga una imagen y la pasa a blanco y negro
     var image = new Image();
     image.src = nombre;
 
@@ -169,11 +169,7 @@ function filtroImagen(nombre) {
     image.onload = function () {
         myDrawImageMethod(this);
 
-        if ((image.width > canvas.width) || (image.height > canvas.height)) {
-            imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        } else {
-            imageData = ctx.getImageData(0, 0, image.width, image.height);
-        }
+        imageData = ctx.getImageData(0, 0, image.width, image.height);
 
         for (let i = 0; i < imageData.data.length; i+=4) { //4 por que es rgba
             let r = imageData.data[i+0];
@@ -190,12 +186,12 @@ function filtroImagen(nombre) {
     }
 }
 
-function cleanCanvas() {
+function cleanCanvas() { //limpia el canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 
-function myDrawImageMethod(image) {
+function myDrawImageMethod(image) { //dibuja la imagen en el canvas
     if ((image.width > canvas.width) || (image.height > canvas.height)) {
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
     } else {
