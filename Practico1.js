@@ -4,29 +4,40 @@ let btnRect = document.getElementById("rectangulo");
 btnRect.addEventListener("click", rectangulo);
 let btnCrIm = document.getElementById("crearImagen");
 btnCrIm.addEventListener("click", crearImagen);
-let btnCaIm = document.getElementById("cargarImagen");
-btnCaIm.addEventListener("click", cargarImagen);
 let btnCG = document.getElementById("crearImagenGradiente");
 btnCG.addEventListener("click", crearImagenGradiente);
 let btnM = document.getElementById("degradeMulticolor");
 btnM.addEventListener("click", degradeMulticolor);
-let btnFI = document.getElementById("filtroImagen");
-btnFI.addEventListener("click", filtroImagen);
+
+let btnCaIm1 = document.getElementById("cargarImagen1");
+btnCaIm1.addEventListener("click", function () { cargarImagen("imagen1.jpg") });
+let btnCaIm2 = document.getElementById("cargarImagen2");
+btnCaIm2.addEventListener("click", function () { cargarImagen("imagen2.jpg") });
+let btnCaIm3 = document.getElementById("cargarImagen3");
+btnCaIm3.addEventListener("click", function () { cargarImagen("imagen3.jpg")});
 
 
+let btnFI1 = document.getElementById("filtroImagen1");
+btnFI1.addEventListener("click", function () { filtroImagen("imagen1.jpg") });
+let btnFI2 = document.getElementById("filtroImagen2");
+btnFI2.addEventListener("click", function () { filtroImagen("imagen2.jpg") });
+let btnFI3 = document.getElementById("filtroImagen3");
+btnFI3.addEventListener("click", function () { filtroImagen("imagen3.jpg") });
 
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
+
 let w = 5;
 let h = 5;
 let matriz = [];
 
 
-for (let y = 0; y < h; y++) {
-    matriz[y] = [];
-    for (let x = 0; x < w; x++) {
-        //matriz[x][y] = Math.floor(Math.random()*100);
+for (let x = 0; x < w; x++) {
+    matriz[x] = [];
+    for (let y = 0; y < h; y++) {
+        matriz[x][y] = Math.floor(Math.random()*100);
     }
+    console.log(matriz[x])
 }
 
 function maximo() {
@@ -117,46 +128,68 @@ function setPixel(imageData, x, y, r, g, b, a) {
 
 function degradeMulticolor() {
     imageData = ctx.createImageData(canvas.width, canvas.height);
-    let r, g, b = 0;
+    let r = 0;
+    let g = 0;
+    let b = 0;
 
     for (let y = 0; y < imageData.height; y++) {
-        for (let x = 0; x < imageData.width /2 ; x++) {
+        for (let x = 0; x < imageData.width / 2 ; x++) {
             r = (x / imageData.height) * 255;
             g = (x / imageData.height) * 255;
             b = (x / imageData.height) * 0;
             setPixel(imageData, x, y, r, g, b, 255);
         }
     }
+
+    let aux = 255 / (imageData.width / 2);
+
+    for (let x = imageData.width / 2; x < imageData.width; x++) {
+        g = g - aux;
+        for (let y = 0; y < imageData.height; y++) {
+            setPixel(imageData, x, y, r, g, b, 255);
+        }
+    }
     ctx.putImageData(imageData, 0, 0);
 }
 
-function cargarImagen() {
+function cargarImagen(nombre) {
     var image = new Image();
-    image.src = "imagen.jpg";
+    image.src = nombre;
 
     image.onload = function () {
         myDrawImageMethod(this);
     }
-
-    function myDrawImageMethod(image) {
-        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    }
 }
 
-function filtroImagen() {
+function filtroImagen(nombre) {
     var image = new Image();
-    image.src = "imagen.jpg";
+    image.src = nombre;
 
+    //image.crossOrigin='anonymous';
     image.onload = function () {
-        ctx.drawImage(this, 0, 0);
-
+        myDrawImageMethod(this);
         imageData = ctx.getImageData(0, 0, this.width, this.height);
 
+        for (let i = 0; i < imageData.data.length; i+=4) { //4 por que es rgba
+            let r = imageData.data[i+0];
+            let g = imageData.data[i+1];
+            let b = imageData.data[i+2];
 
-        ctx.putImageData(ImageData, 0, 0);
+            let gris = (r + g + b) / 3;
+
+            imageData.data[i+0] = gris;
+            imageData.data[i+1] = gris;
+            imageData.data[i+2] = gris;
+        }
+        ctx.putImageData(imageData, 0, 0);
     }
 }
 
 function cleanCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+
+function myDrawImageMethod(image) {
+    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 }

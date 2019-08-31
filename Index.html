@@ -12,10 +12,28 @@
             <button class="btn btn-sm btn-outline-primary" type="button" id="cleanCanvas">Clean Canvas</button>
             <button class="btn btn-sm btn-outline-secondary" type="button" id="rectangulo">Rectangulo</button>
             <button class="btn btn-sm btn-outline-secondary" type="button" id="crearImagen">Crear Imagen</button>
-            <button class="btn btn-sm btn-outline-secondary" type="button" id="cargarImagen">Cargar Imagen</button>
             <button class="btn btn-sm btn-outline-secondary" type="button" id="crearImagenGradiente">Crear Imagen Gradiente</button>
             <button class="btn btn-sm btn-outline-secondary" type="button" id="degradeMulticolor">Degrade Multicolor</button>
-            <button class="btn btn-sm btn-outline-secondary" type="button" id="filtroImagen">Filtro Imagen</button>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cargar Imagen
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" id="cargarImagen1" type="button">Normal</button>
+                    <button class="dropdown-item" id="cargarImagen2" type="button">4k</button>
+                    <button class="dropdown-item" id="cargarImagen3" type="button">128x128 px</button>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filtro Imagen
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <button class="dropdown-item" id="filtroImagen1" type="button">Normal</button>
+                    <button class="dropdown-item" id="filtroImagen2" type="button">4k</button>
+                    <button class="dropdown-item" id="filtroImagen3" type="button">128x128 px</button>
+                </div>
+            </div>
         </form>
     </nav>
 
