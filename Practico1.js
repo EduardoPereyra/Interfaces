@@ -168,7 +168,12 @@ function filtroImagen(nombre) {
     //image.crossOrigin='anonymous';
     image.onload = function () {
         myDrawImageMethod(this);
-        imageData = ctx.getImageData(0, 0, this.width, this.height);
+
+        if ((image.width > canvas.width) || (image.height > canvas.height)) {
+            imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        } else {
+            imageData = ctx.getImageData(0, 0, image.width, image.height);
+        }
 
         for (let i = 0; i < imageData.data.length; i+=4) { //4 por que es rgba
             let r = imageData.data[i+0];
@@ -191,5 +196,9 @@ function cleanCanvas() {
 
 
 function myDrawImageMethod(image) {
-    ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    if ((image.width > canvas.width) || (image.height > canvas.height)) {
+        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    } else {
+        ctx.drawImage(image, 0, 0, image.width, image.height);
+    }
 }
