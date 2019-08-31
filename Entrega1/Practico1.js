@@ -27,8 +27,8 @@ btnFI3.addEventListener("click", function () { filtroImagen("imagen3.jpg") });
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-let w = 5;
-let h = 5;
+let w = 100;
+let h = 100;
 let matriz = [];
 
 
