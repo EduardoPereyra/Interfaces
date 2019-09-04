@@ -31,19 +31,24 @@ let w = 100;
 let h = 100;
 let matriz = [];
 
+cargarMatriz();
+console.log("maximo: " + maximo());
+console.log("maximo par, minimo impar: " + maxParMinImpar());
+console.log("promedio: " + promedio());
 
-for (let x = 0; x < w; x++) { //creacion de la matriz
-    matriz[x] = [];
-    for (let y = 0; y < h; y++) {
-        matriz[x][y] = Math.floor(Math.random()*100);
+function cargarMatriz() {
+    for (let x = 0; x < w; x++) { //creacion de la matriz
+        matriz[x] = [];
+        for (let y = 0; y < h; y++) {
+            matriz[x][y] = Math.floor(Math.random() * 100);
+        }
+        console.log(matriz[x])
     }
-    console.log(matriz[x])
 }
 
 function maximo() { //devuelve el maximo de la matriz completa
     let maximo = -1;
     for (let y = 0; y < h; y++) {
-        matriz[y] = [];
         for (let x = 0; x < w; x++) {
             if (matriz[x][y] > maximo) {
                 maximo = matriz[x][y]
@@ -55,12 +60,11 @@ function maximo() { //devuelve el maximo de la matriz completa
 
 function maxParMinImpar() { //devuelve el maximo en las filas pares y el minimo en las impares
     let max = -1;
-    let min = -1;
+    let min = 100;
 
     for (let y = 0; y < h; y++) {
-        matriz[y] = [];
         for (let x = 0; x < w; x++) {
-            if ((matriz[x][y] > max)&&(y%2 == 0)) {
+            if ((matriz[x][y] > max)&&(y % 2 == 0)) {
                 max = matriz[x][y]
             }else if ((matriz[x][y] < min)&& (y % 2 > 0)) {
                 min = matriz[x][y]
