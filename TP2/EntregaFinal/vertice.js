@@ -1,4 +1,4 @@
-export class Arista {
+export class Vertice {
     constructor(paramPosX, paramPosY, paramRadio, paramCentro, paramR, paramG , paramB) {
         this.posX = paramPosX;
         this.posY = paramPosY;
