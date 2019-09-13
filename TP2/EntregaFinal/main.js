@@ -9,10 +9,10 @@ btnCP.addEventListener("click", cerrarPoligono);
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 c.onclick = function () { cargarCoordenadas(event); };
-c.onmousedown = function () { seleccionarArista(event); }
-c.onmousemove = function () { moverArista(event); }
-c.onmouseup = function () { soltarArista(); }
-c.ondblclick = function () { borrarArista(event); }
+c.onmousedown = function () { seleccionarVertice(event); }
+c.onmousemove = function () { moverVertice(event); }
+c.onmouseup = function () { soltarVertice(); }
+c.ondblclick = function () { borrarVertice(event); }
 window.onkeydown = function () { confirmarTecla(event); }
 window.onkeypress = function () { cambiarColor(event); }
 window.onkeyup = function () { color = false; }
@@ -45,7 +45,7 @@ function cerrarPoligono() { //cierra el poligono, une la ultima arista con la pr
     figura = new Figura();
 }
 
-function borrarArista(event) { //borra una arista marcada por el mouse
+function borrarVertice(event) { //borra una vertice marcada por el mouse
     if (!esVacio(event)) {
         if (figura.isInside(event.layerX, event.layerY) != null) { //pregunta aparte por que la actual no esta en el arreglo
             figura.delete(figura.isInside(event.layerX, event.layerY));
@@ -83,7 +83,7 @@ function actualizar() { //actualiza el canvas volviendo a cargar todo
     }
 }
 
-function seleccionarArista(event) { //selecciona una arista
+function seleccionarVertice(event) { //selecciona una vertice
     for (let i = 0; i < figuras.length; i++) {
         if (figuras[i].isInside(event.layerX, event.layerY) != null) {
             objetoActual = figuras[i].isInside(event.layerX, event.layerY);
@@ -116,7 +116,7 @@ function seleccionarCentro(event) { //selecciona el centro de un poligono
 
 }
 
-function moverArista(event) { //mueve una arista ya sea centro o no
+function moverVertice(event) { //mueve una arista ya sea centro o no
     if (objetoActual != null) {
         if (centro) {
             let posInicialMoverX = posCentroInicialX - event.layerX;
@@ -133,7 +133,7 @@ function moverArista(event) { //mueve una arista ya sea centro o no
     posCentroInicialY = event.layerY;
 }
 
-function soltarArista() { //suelta la arista y vuelve todo a null y false
+function soltarVertice() { //suelta la arista y vuelve todo a null y false
     objetoActual = null;
     centro = false;
     posCentroInicialX = 0;
