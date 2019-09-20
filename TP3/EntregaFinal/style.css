@@ -1,0 +1,113 @@
+body{
+    background-color: rgb(135,206,235);
+}
+
+#ninja{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 92px;
+    width: 73.1px;
+    background: url('./images/run_ninja.png') left center;
+    margin: 50px auto 0;
+    animation: run 0.7s steps(10) infinite;
+}
+
+#coin,#coin2{
+    position: absolute;
+    top: 240px;
+    height: 64px;
+    width: 51.166px;
+    background: url('./images/coin.png') left center;
+    margin: 50px auto 0;
+    animation: coin 0.7s steps(6) infinite; 
+}
+
+#coin{
+    left: 500px;
+}
+
+#coin2{
+    left: 320px;
+}
+
+#background1{
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    height: 360px;
+    width: 640px;
+    background: url('./images/BG_Background-1.png') left center;
+    margin: 50px auto 0;
+    animation: animbackground 10s steps(500) infinite; 
+}
+
+#background2{
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    height: 360px;
+    width: 640px;
+    background: url('./images/BG_Background-2.png') left center;
+    margin: 50px auto 0;
+    animation: animbackground 25s steps(1000) infinite; 
+}
+
+#background3{
+    position: absolute; 
+    left: 50px;
+    top: 0px;
+    height: 360px;
+    width: 640px;
+    background: url('./images/BG_Background-3.png') left center;
+    margin: 50px auto 0;
+    animation: animbackground 70s steps(1000) infinite; 
+}
+
+#platform{
+    position: absolute;
+    left: 50px;
+    top: 0px;
+    height: 360px;
+    width: 640px;
+    background: url('./images/BG_Platform.png') left center;
+    margin: 50px auto 0;
+    animation: animbackplatform 1.5s steps(100) infinite; 
+}
+
+#snow{
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    height: 300px;
+    width: 640px;
+    background: url('./images/snow.png') left center;
+    margin: 50px auto 0;
+    animation: animsnow 0.5s steps(100) infinite; 
+}
+
+@keyframes animbackground { 
+    from {background-position: 0;}
+    to { background-position: -640px;}
+}
+
+@keyframes animbackplatform { 
+    from {background-position: 0;}
+    to { background-position: -640px;}
+}
+
+@keyframes animsnow { 
+    from {background-position: 0;}
+    to { background-position: -298px;}
+}
+
+@keyframes coin { 
+    from {background-position: 0;}
+    to { background-position: -307px;}
+}
+
+@keyframes run { 
+    from {background-position: 0;}
+    to { background-position: -731px;}
+}
+

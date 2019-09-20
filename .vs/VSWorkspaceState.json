@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\TP2",
-    "\\TP2\\EntregaFinal"
+    "\\TP2\\EntregaFinal",
+    "\\TP3",
+    "\\TP3\\EntregaFinal"
   ],
-  "SelectedNode": "\\TP2\\EntregaFinal\\arista.js",
+  "SelectedNode": "\\TP3\\EntregaFinal\\main.js",
   "PreviewInSolutionExplorer": false
 }
