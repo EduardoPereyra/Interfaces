@@ -10,7 +10,7 @@ let heightGround = 90;
 let gameOver = false;
 let min = 0;
 let seg = 0;
-let points = 136;
+let points = 0;
 let idTimer = 0;
 let idPoints = 0;
 
