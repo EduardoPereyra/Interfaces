@@ -121,3 +121,13 @@ body{
     to { background-position: -731px;}
 }
 
+@keyframes jump { 
+    from {background-position: 0;}
+    to { background-position: -752px;}
+}
+
+@keyframes death{
+    from {background-position: 0;}
+    to { background-position: -1152px;}
+}
+

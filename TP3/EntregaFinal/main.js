@@ -10,7 +10,7 @@ let heightGround = 90;
 let gameOver = false;
 let min = 0;
 let seg = 0;
-let points = 0;
+let points = 136;
 let idTimer = 0;
 let idPoints = 0;
 
@@ -23,7 +23,7 @@ reiniciarPuntos();
 
 guy = {
     height:92,
-    width:73.1,
+    width:50,
     jumping:true,
     x:80,
     y:250,
@@ -33,13 +33,17 @@ guy = {
 
 coin1 = {
     x: 650,
-    y: 250,
+    y: 250,    
+    height: 45,
+    width: 35,
     xMove: 5
 };
 
 coin2 = {
     x: 325,
-    y: 250,
+    y: 250,   
+    height: 45,
+    width: 35,
     xMove: 5
 };
 
@@ -70,6 +74,10 @@ controller = {
   
 loop = function() { //repite esta funcion
     if(!gameOver) {
+        if((points == 204) || (points == 340) || (points == 510)){ //aumenta la velocidad
+            coin1.xMove += 0.02;
+            coin2.xMove += 0.02;
+        }
         for (let i = 0; i < coinList.length; i++) { //movimientos de monedas
             coinList[i].x -= coinList[i].xMove;
             if(coinList[i].x < 35){
@@ -77,7 +85,11 @@ loop = function() { //repite esta funcion
             }
         }
             
-        if (controller.up && guy.jumping == false) { //que no haya doble salto   
+        if (controller.up && guy.jumping == false) { //que no haya doble salto
+            ninja.style.height = 102 + 'px';
+            ninja.style.width = 75.2 + 'px';
+            ninja.style.background = "url('./images/jump_ninja.png') left center";
+            ninja.style.animation = "jump 0.7s steps(10)";
             guy.y_velocity -= 30;
             guy.jumping = true;
         }
@@ -90,20 +102,50 @@ loop = function() { //repite esta funcion
             guy.jumping = false;
             guy.y = ctx.canvas.height -  guy.height - heightGround;
             guy.y_velocity = 0;
+            ninja.style.height = 92 + 'px';
+            ninja.style.width = 73.1 + 'px';
+            ninja.style.background = "url('./images/run_ninja.png') left center";
+            ninja.style.animation = "run 0.7s steps(10) infinite";
         }
 
         ninja.style.top = guy.y + "px";
         moneda.style.left = coin1.x + "px";
         moneda2.style.left = coin2.x + "px";
+
+        if (guy.x < coin1.x + coin1.width &&
+            guy.x + guy.width > coin1.x &&
+            guy.y < coin1.y + coin1.height &&
+            guy.height + guy.y > coin1.y) { //coin1
+                gameOver = true;
+                gameoverImg.style.display = 'flex';
+        }
+        if (guy.x < coin2.x + coin2.width &&
+            guy.x + guy.width > coin2.x &&
+            guy.y < coin2.y + coin2.height &&
+            guy.height + guy.y > coin2.y) { //coin2
+                gameOver = true;
+                gameoverImg.style.display = 'flex';
+        }
     }else{
+        ninja.style.height = 96 + 'px';
+        ninja.style.width = 92 + 'px';
+        ninja.style.background = "url('./images/death_ninja.png') left center";
+        ninja.style.animation = "death 2s steps(12)";
+
         clearInterval(idTimer);
         clearInterval(idPoints);
         if (controller.r) { //reiniciar
+            ninja.style.height = 92 + 'px';
+            ninja.style.width = 73.1 + 'px';
+            ninja.style.background = "url('./images/run_ninja.png') left center";
+            ninja.style.animation = "run 0.7s steps(10) infinite";
             gameOver = false;
             gameoverImg.style.display = 'none';
             min = 0;
             seg = 0;
             points = 0;
+            coin1.x = 650;
+            coin2.x = 325;
             reiniciarTiempo();
             reiniciarPuntos();
         }
@@ -140,7 +182,7 @@ function clockMove(){
 
 function puntosMove(){
     points += 17;
-    if(points > 10000){
+    if(points > 1000){
         gameOver = true;
         gameoverImg.style.display = 'flex';
     }else{
