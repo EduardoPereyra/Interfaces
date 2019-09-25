@@ -1,5 +1,6 @@
 let context, controller, guy, loop, coin1, coin2;
-let ctx = document.querySelector("canvas").getContext("2d");
+let canvas = document.querySelector("canvas");
+let ctx = canvas.getContext("2d");
 let ninja = document.getElementById("ninja");
 let moneda = document.getElementById("coin");
 let moneda2 = document.getElementById("coin2");
@@ -49,13 +50,13 @@ coin2 = {
 
 ninja.style.left = guy.x + "px";
 let coinList = [coin1,coin2];
+let velocidadInicial = coin1.xMove;
 
 controller = {
     up:false,
-    r:false,
-    
+    r:false,  
     keyListener:function(event) {
-        let key_state = (event.type == "keydown")?true:false;  
+        let key_state = (event.type == "keydown" || event.type == "touchstart")?true:false;
         if(event.keyCode == 38) {//flecha arriba
             controller.up = key_state;
         }
@@ -69,15 +70,16 @@ controller = {
             controller.r = key_state;
         }
     }
-  
 }; //end controller
   
-loop = function() { //repite esta funcion
+loop = function() { //se repite esta funcion
     if(!gameOver) {
         if((points == 204) || (points == 340) || (points == 510)){ //aumenta la velocidad
-            coin1.xMove += 0.02;
-            coin2.xMove += 0.02;
+            for (let i = 0; i < coinList.length; i++) { //movimientos de monedas
+                coinList[i].xMove += 0.02;
+            }
         }
+
         for (let i = 0; i < coinList.length; i++) { //movimientos de monedas
             coinList[i].x -= coinList[i].xMove;
             if(coinList[i].x < 35){
@@ -112,46 +114,28 @@ loop = function() { //repite esta funcion
         moneda.style.left = coin1.x + "px";
         moneda2.style.left = coin2.x + "px";
 
-        if (guy.x < coin1.x + coin1.width &&
-            guy.x + guy.width > coin1.x &&
-            guy.y < coin1.y + coin1.height &&
-            guy.height + guy.y > coin1.y) { //coin1
-                gameOver = true;
-                gameoverImg.style.display = 'flex';
+        for (let i = 0; i < coinList.length; i++) { //colision con monedas
+            if (guy.x < coinList[i].x + coinList[i].width &&
+                guy.x + guy.width > coinList[i].x &&
+                guy.y < coinList[i].y + coinList[i].height &&
+                guy.height + guy.y > coinList[i].y) {
+                    gameOver = true;
+                    gameoverImg.style.display = 'flex';
+            }
         }
-        if (guy.x < coin2.x + coin2.width &&
-            guy.x + guy.width > coin2.x &&
-            guy.y < coin2.y + coin2.height &&
-            guy.height + guy.y > coin2.y) { //coin2
-                gameOver = true;
-                gameoverImg.style.display = 'flex';
-        }
+
     }else{
         ninja.style.height = 96 + 'px';
         ninja.style.width = 92 + 'px';
         ninja.style.background = "url('./images/death_ninja.png') left center";
         ninja.style.animation = "death 2s steps(12)";
-
         clearInterval(idTimer);
         clearInterval(idPoints);
-        if (controller.r) { //reiniciar
-            ninja.style.height = 92 + 'px';
-            ninja.style.width = 73.1 + 'px';
-            ninja.style.background = "url('./images/run_ninja.png') left center";
-            ninja.style.animation = "run 0.7s steps(10) infinite";
-            gameOver = false;
-            gameoverImg.style.display = 'none';
-            min = 0;
-            seg = 0;
-            points = 0;
-            coin1.x = 650;
-            coin2.x = 325;
-            reiniciarTiempo();
-            reiniciarPuntos();
-        }
+        window.cancelAnimationFrame(loop);
+        reiniciarJuego();
     }
     window.requestAnimationFrame(loop);//llama a la actualización cuando el navegador este listo para dibujar nuevamente
-};//end loop
+};//cierre loop
 
 function reiniciarTiempo(){
     tiempo.innerHTML = 'Tiempo: 00:00';
@@ -190,6 +174,31 @@ function puntosMove(){
     }
 }
 
+function reiniciarJuego(){
+    if (controller.r) {
+        for (let i = 0; i < coinList.length; i++) { //reiniciar velocidad monedas
+            coinList[i].xMove = velocidadInicial;
+        }
+        ninja.style.height = 92 + 'px';
+        ninja.style.width = 73.1 + 'px';
+        ninja.style.background = "url('./images/run_ninja.png') left center";
+        ninja.style.animation = "run 0.7s steps(10) infinite";
+        guy.x = 80;
+        guy.y = 250;
+        gameOver = false;
+        gameoverImg.style.display = 'none';
+        min = 0;
+        seg = 0;
+        points = 0;
+        coin1.x = 650;
+        coin2.x = 325;
+        reiniciarTiempo();
+        reiniciarPuntos();
+    }
+}
+
 window.addEventListener("keydown", controller.keyListener)
 window.addEventListener("keyup", controller.keyListener)
+canvas.addEventListener("touchstart", controller.keyListener)
+canvas.addEventListener("touchend", controller.keyListener)
 window.requestAnimationFrame(loop);
