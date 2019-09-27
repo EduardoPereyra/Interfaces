@@ -65,7 +65,7 @@ body{
     width: 640px;
     background: url('./images/BG_Platform.png') left center;
     margin: 50px auto 0;
-    animation: animbackplatform 1.5s steps(100) infinite; 
+    animation: animbackplatform 1.5s linear infinite; 
 }
 
 #snow{
@@ -76,7 +76,7 @@ body{
     width: 640px;
     background: url('./images/snow.png') left center;
     margin: 50px auto 0;
-    animation: animsnow 0.5s steps(100) infinite; 
+    animation: animsnow 0.5s linear infinite; 
 }
 
 #gameover{
