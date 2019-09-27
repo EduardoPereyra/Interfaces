@@ -11,7 +11,7 @@ function transformRandom() {
           if(scaleX < 0.2)
           scaleX = 0.2;
           if(scaleY < 0.2)
-          scaleX = 0.2;
+          scaleY = 0.2;
           rect1.style.transform = 'scale(' + scaleX +',' + scaleY  + ')';
         break;
       case 1:

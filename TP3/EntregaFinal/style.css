@@ -32,7 +32,7 @@ body{
     width: 640px;
     background: url('./images/BG_Background-1.png') left center;
     margin: 50px auto 0;
-    animation: animbackground 10s steps(500) infinite; 
+    animation: animbackground 10s linear infinite; 
 }
 
 #background2{
@@ -43,7 +43,7 @@ body{
     width: 640px;
     background: url('./images/BG_Background-2.png') left center;
     margin: 50px auto 0;
-    animation: animbackground 25s steps(1000) infinite; 
+    animation: animbackground 25s linear infinite; 
 }
 
 #background3{
@@ -54,7 +54,7 @@ body{
     width: 640px;
     background: url('./images/BG_Background-3.png') left center;
     margin: 50px auto 0;
-    animation: animbackground 70s steps(1000) infinite; 
+    animation: animbackground 70s linear infinite; 
 }
 
 #platform{
