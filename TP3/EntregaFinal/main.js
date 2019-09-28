@@ -6,6 +6,7 @@ let ninja = document.getElementById("ninja");
 let moneda = document.getElementById("coin");
 let moneda2 = document.getElementById("coin2");
 let puntos = document.getElementById("puntos");
+let puntosHigh = document.getElementById("puntosHigh");
 let tiempo = document.getElementById("tiempo");
 let gameoverImg = document.getElementById("gameover");
 let heightGround = 90;
@@ -15,6 +16,7 @@ let seg = 0;
 let points = 0;
 let idTimer = 0;
 let idPoints = 0;
+let pointsHigh = 0;
 
 ctx.canvas.height = 400;
 ctx.canvas.width = 800;
@@ -139,6 +141,7 @@ loop = function() { //se repite esta funcion
         window.cancelAnimationFrame(loop);
         reiniciarJuego();
     }
+    puntosHigh.innerHTML = 'Max puntos: ' + pointsHigh;
     window.requestAnimationFrame(loop);//llama a la actualización cuando el navegador este listo para dibujar nuevamente
 };//cierre loop
 
@@ -194,6 +197,9 @@ function reiniciarJuego(){
         gameoverImg.style.display = 'none';
         min = 0;
         seg = 0;
+        if(points > pointsHigh){
+            pointsHigh = points;
+        }
         points = 0;
         coin1.x = 650;
         coin2.x = 325;
