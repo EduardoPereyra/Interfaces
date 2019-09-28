@@ -1,3 +1,4 @@
+"use strict";
 let context, controller, guy, loop, coin1, coin2;
 let canvas = document.querySelector("canvas");
 let ctx = canvas.getContext("2d");
@@ -56,18 +57,22 @@ controller = {
     up:false,
     r:false,  
     keyListener:function(event) {
-        let key_state = (event.type == "keydown" || event.type == "touchstart")?true:false;
+        let key_state = (event.type == "keydown")?true:false;
         if(event.keyCode == 38) {//flecha arriba
             controller.up = key_state;
+            event.preventDefault();
         }
         if(event.keyCode == 32) {//space
             controller.up = key_state;
+            event.preventDefault();
         }
         if(event.keyCode == 87) {//w
             controller.up = key_state;
+            event.preventDefault();
         }
         if(event.keyCode == 82) {//r
             controller.r = key_state;
+            event.preventDefault();
         }
     }
 }; //end controller
@@ -197,8 +202,6 @@ function reiniciarJuego(){
     }
 }
 
-window.addEventListener("keydown", controller.keyListener)
-window.addEventListener("keyup", controller.keyListener)
-canvas.addEventListener("touchstart", controller.keyListener)
-canvas.addEventListener("touchend", controller.keyListener)
+window.addEventListener("keydown", controller.keyListener, { passive:false});
+window.addEventListener("keyup", controller.keyListener);
 window.requestAnimationFrame(loop);
