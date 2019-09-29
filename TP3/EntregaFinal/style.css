@@ -1,8 +1,8 @@
-body{
-    background-color: rgb(135,206,235);
+body {
+    background-color: rgb(135, 206, 235);
 }
 
-#ninja{
+#ninja {
     position: absolute;
     left: 0px;
     top: 0px;
@@ -13,7 +13,8 @@ body{
     animation: run 0.7s steps(10) infinite;
 }
 
-#coin,#coin2{
+#coin,
+#coin2 {
     position: absolute;
     top: 240px;
     left: 0px;
@@ -21,54 +22,42 @@ body{
     width: 51.166px;
     background: url('./images/coin.png') left center;
     margin: 50px auto 0;
-    animation: coin 0.7s steps(6) infinite; 
+    animation: coin 0.7s steps(6) infinite;
 }
 
-#background1{
+#background1,
+#background2,
+#background3,
+#platform {
     position: absolute;
-    left: 50px;
     top: 0px;
+    left: 50px;
     height: 360px;
     width: 640px;
+    margin: 50px auto 0;
+}
+
+#background1 {
     background: url('./images/BG_Background-1.png') left center;
-    margin: 50px auto 0;
-    animation: animbackground 10s linear infinite; 
+    animation: animbackground 10s linear infinite;
 }
 
-#background2{
-    position: absolute;
-    left: 50px;
-    top: 0px;
-    height: 360px;
-    width: 640px;
+#background2 {
     background: url('./images/BG_Background-2.png') left center;
-    margin: 50px auto 0;
-    animation: animbackground 25s linear infinite; 
+    animation: animbackground 25s linear infinite;
 }
 
-#background3{
-    position: absolute; 
-    left: 50px;
-    top: 0px;
-    height: 360px;
-    width: 640px;
+#background3 {
     background: url('./images/BG_Background-3.png') left center;
-    margin: 50px auto 0;
-    animation: animbackground 70s linear infinite; 
+    animation: animbackground 70s linear infinite;
 }
 
-#platform{
-    position: absolute;
-    left: 50px;
-    top: 0px;
-    height: 360px;
-    width: 640px;
+#platform {
     background: url('./images/BG_Platform.png') left center;
-    margin: 50px auto 0;
-    animation: animbackplatform 1.5s linear infinite; 
+    animation: animbackplatform 1.5s linear infinite;
 }
 
-#snow{
+#snow {
     position: absolute;
     left: 50px;
     top: 10px;
@@ -76,10 +65,10 @@ body{
     width: 640px;
     background: url('./images/snow.png') left center;
     margin: 50px auto 0;
-    animation: animsnow 0.5s linear infinite; 
+    animation: animsnow 0.5s linear infinite;
 }
 
-#gameover{
+#gameover {
     position: absolute;
     left: 50px;
     top: 0px;
@@ -89,45 +78,123 @@ body{
     margin: 50px auto 0;
 }
 
-.message{
+#puntos {
+    position: absolute;
+    left: 60px;
+    top: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#puntosHigh {
+    position: absolute;
+    left: 60px;
+    top: 70px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#tiempo {
+    position: absolute;
+    left: 550px;
+    top: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#win h1 {
+    position: absolute;
+    left: 170px;
+    top: 100px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 90px;
+    color: green;
+}
+
+#win p {
+    position: absolute;
+    left: 260px;
+    top: 230px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.message {
     position: absolute;
     left: 210px;
     top: 200px;
     font-family: 'Courier New', Courier, monospace;
 }
 
-@keyframes animbackground { 
-    from {background-position: 0;}
-    to { background-position: -640px;}
+.instructions {
+    position: absolute;
+    left: 250px;
+    top: 35px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-@keyframes animbackplatform { 
-    from {background-position: 0;}
-    to { background-position: -640px;}
+@keyframes animbackground {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -640px;
+    }
 }
 
-@keyframes animsnow { 
-    from {background-position: 0;}
-    to { background-position: -298px;}
+@keyframes animbackplatform {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -640px;
+    }
 }
 
-@keyframes coin { 
-    from {background-position: 0;}
-    to { background-position: -307px;}
+@keyframes animsnow {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -298px;
+    }
 }
 
-@keyframes run { 
-    from {background-position: 0;}
-    to { background-position: -731px;}
+@keyframes coin {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -307px;
+    }
 }
 
-@keyframes jump { 
-    from {background-position: 0;}
-    to { background-position: -752px;}
+@keyframes run {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -731px;
+    }
 }
 
-@keyframes death{
-    from {background-position: 0;}
-    to { background-position: -1152px;}
+@keyframes jump {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -752px;
+    }
 }
 
+@keyframes death {
+    from {
+        background-position: 0;
+    }
+
+    to {
+        background-position: -1152px;
+    }
+}
