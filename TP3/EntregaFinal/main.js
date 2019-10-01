@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function reiniciarPuntos() {
         puntos.innerHTML = 'Puntos: 0';
-        idPoints = window.setInterval(puntosMove, 1500);
+        idPoints = window.setInterval(puntosMove, 500);
     }
 
     function clockMove() {
@@ -177,10 +177,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function puntosMove() {
         points += 17;
-        if (points > 1000) {
+        if (points > 800) {
             gameOver = true;
             win.style.display = 'flex';
-            points = 1000;
+            points = 800;
             pointsHigh = points;
         } else {
             puntos.innerHTML = 'Puntos: ' + points;
@@ -217,5 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
         passive: false
     });
     window.addEventListener("keyup", controller.keyListener);
+
+
     window.requestAnimationFrame(loop);
 })
