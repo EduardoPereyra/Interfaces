@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>TP3 parte 1</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <p>Aplicar transiciones a elementos del document cada vez que se interactúa con ellos. Ej: cambiar el color, tamaño o posición de los elementos cuando se pasa el mouse por encima.</p>
+    <div class="container">
+        <canvas  class="ejercicio1" height="300" width="300">     
+    </div>
+    <p>Implementar una función que aplique transformaciones random a un elemento del document cada vez que se clickea encima.</p>
+    <div class="container">
+        <canvas id="ejercicio2" class="ejercicio2" height="300" width="300">     
+    </div>
+    <p>Utilizando las animaciones de CSS3, implementar un reloj analógico que muestre el paso del tiempo moviendo las agujas de “hora”, “minutos” y “segundos”.</p>
+    <div class="container">
+        <img id="hora_aguja" class="agujas" src="images/hora_aguja.png">
+        <img id="min_aguja" class="agujas" src="images/min_aguja.png">
+        <img id="seg_aguja" class="agujas" src="images/seg_aguja.png">
+        <canvas id="reloj" class="reloj" height="300" width="300" style="border:1px solid #000;">       
+    </div>
+    <p>Generar una animación por cuadros “keyframe” de un personaje que camina a partir de una tira de imágenes sprite sheet.</p>
+    <p>Implementar los métodos necesarios para que el personaje de la animación del ejercicio (4) pueda moverse por la pantalla siguiendo el puntero del mouse.</p>
+    <div class="container" id="map">           
+        <div id="ninja"></div>
+    </div>
+</body>
+<scripts>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="main.js" type="module"></script>
+</scripts>
+</html>
